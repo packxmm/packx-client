@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Ubuntu-Bold";
+  src: url("./assets/fonts/Ubuntu-Bold.ttf") format("truetype");
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+:root {
+  --global-font-family: 'Ubuntu', sans-serif;
+  --global-font-bold: 'Ubuntu-Bold', sans-serif;
+  --global-font-size: 1.125rem;
+  --global-text-color: #515151;
+  --global-color-main: #085252;
+  --global-color-second: #2797A6;
+  --global-color-header: #1A6FB5;
+  --global-color-white: #ffffff;
+  --global-color-pale-white: #9b9b9b; /*Please name the variant, I don't know*/
+}
