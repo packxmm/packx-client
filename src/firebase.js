@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { getFirestore, setDoc, doc, getDocs, collection, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA_VyuZQeY4wrfhN_K2OwYNLew9-cOxVtg",
@@ -48,6 +48,34 @@ export const sendPasswordReset = async (email) => {
     alert(err.message);
   }
 };
+
+
+export const getTripData = async ()=>{
+  try{
+    const tripCollection = collection(db, "trips");
+    const getData =  await getDocs(tripCollection);
+    return getData;
+  }catch(err){
+    console.error(err.message)
+  }
+}
+
+export const updateTrip = async ( tripId ) => {
+  try{
+    const tripDoc = doc(db, "trips", tripId);
+      updateDoc(tripDoc, { 
+        trackingStatus: "Done"
+      }).then(() => {
+        console.log("updated trip status");
+        window.location.reload();
+      }).catch((error) => {
+        console.log(error)
+        return error;
+      });
+  }catch(err){
+    console.error(err.message)
+  }
+}
 
 export const logout = () => {
   signOut(auth);
