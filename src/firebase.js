@@ -60,6 +60,26 @@ export const getTripData = async ()=>{
   }
 }
 
+export const getUserData = async ()=>{
+  try{
+    const userCollection = collection(db, "users");
+    const getData =  await getDocs(userCollection);
+    return getData;
+  }catch(err){
+    console.error(err.message)
+  }
+}
+
+export const getPackageData = async ()=>{
+  try{
+    const packagesCollection = collection(db, "package");
+    const getData =  await getDocs(packagesCollection);
+    return getData;
+  }catch(err){
+    console.error(err.message)
+  }
+}
+
 export const updateTrip = async ( tripId ) => {
   try{
     const tripDoc = doc(db, "trips", tripId);
