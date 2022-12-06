@@ -22,7 +22,7 @@ export const registerWithEmailAndPassword = async (name, email, password, facili
     await setDoc(doc(db, "users", user.uid),{
       id: user.uid,
       name,
-      facility: facilityName,
+      facilityName: facilityName,
       dob: DOB,
       gender: gender,
       address: address,
