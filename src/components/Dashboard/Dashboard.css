@@ -112,7 +112,7 @@ body {
   border: 1px solid #DFE0EB;
   margin-left: 2rem !important;
   overflow: scroll;
-  height: 30%;
+  height: calc(100vh - 120px);
   width: 98%;
 }
 td label{
