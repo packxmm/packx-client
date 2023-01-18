@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, setDoc, doc, getDocs, collection, updateDoc } from "firebase/firestore";
+import { getFirestore, query, where, setDoc, doc, getDocs, collection, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA_VyuZQeY4wrfhN_K2OwYNLew9-cOxVtg",
@@ -12,7 +12,7 @@ const firebaseConfig = {
     measurementId: "G-GWM7HCQNQY"
 };
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
 const db = getFirestore(app);
 
 export const registerWithEmailAndPassword = async (name, email, password, facilityName, gender, DOB, address, phoneNo ) => {
@@ -60,13 +60,19 @@ export const getTripData = async ()=>{
   }
 }
 
-export const getUserData = async ()=>{
-  try{
-    const userCollection = collection(db, "users");
-    const getData =  await getDocs(userCollection);
-    return getData;
-  }catch(err){
-    console.error(err.message)
+export const getUserData = async (user) => {
+  console.log(user)
+  if(user !== null){ 
+    try{
+      const userdb = query(collection(db, "users"), where("email", "==", user.email));
+      const getData =  await getDocs(userdb); 
+      return getData;
+    }catch(err){
+      console.error(err.message)
+      return err;
+    }
+  }else{
+    return null;
   }
 }
 
@@ -101,11 +107,29 @@ export const logout = () => {
   signOut(auth);
 };
 
-export const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email, password) => {
+  console.log(email, password)
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
-    console.log(res)
+    return res.user;
   } catch (err) {
     console.error(err.message);
   }
 };
+
+export const getTripsFacility = async (userId)=>{ 
+  try{
+    const tripCollectionbyId = query(collection(db, "trips"), where("facilityId", "==", userId));
+    const tripDatabyId =  await getDocs(tripCollectionbyId); 
+    return tripDatabyId;
+  }catch(err){
+    console.error(err.message)
+  }
+}
+
+export {
+  auth,
+  db,
+  logInWithEmailAndPassword,
+  signInWithEmailAndPassword
+}

@@ -1,0 +1,40 @@
+.tripHeader{
+    color: var(--global-color-main);
+}
+.status{
+    color:  var(--global-color-main); 
+    font-size: 20px;
+}
+.react-calendar{
+    border: none !important;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100% !important;
+    border-radius: 10px;
+}
+
+.react-calendar__navigation{ 
+    font-family: 'Ubuntu';
+    font-size: 18px;
+}
+
+.react-calendar__tile,.react-calendar__month-view__weekdays__weekday{
+    font-family: 'Ubuntu';
+    font-size: 16px; 
+}
+
+abbr[title]{ 
+    text-decoration: none !important;
+}
+
+.react-calendar__tile--active{
+    background-color: #F04D23 !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 420px) {
+    .react-calendar__tile--active{
+        border-radius: 50%;
+        width: 30px;
+        height: 50px;
+    }
+  }

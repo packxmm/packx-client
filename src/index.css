@@ -30,3 +30,7 @@ code {
   --global-color-white: #ffffff;
   --global-color-pale-white: #9b9b9b; /*Please name the variant, I don't know*/
 }
+
+h1, h2, h3, h4, h5, h6{ 
+  font-family: "Ubuntu-Bold";
+}

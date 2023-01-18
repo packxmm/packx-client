@@ -4,9 +4,9 @@ import { Container , Form, Button } from 'react-bootstrap';
 import { auth, logInWithEmailAndPassword, getUserData } from "../../firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import logo from "./../../assets/images/PackXLogo.png";
-import UserSignIn from "./../../assets/images/UserSignIn.png";
-import "./Login.css";
-function Login() {
+import FacilitySignIn from "./../../assets/images/FacilitySignIn.png";
+import "./SignIn.css";
+function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading] = useAuthState(auth); 
@@ -42,7 +42,7 @@ function Login() {
             <img alt={logo} src={logo} className="my-3"/> 
         </div> 
         <div className="text-center">
-            <img alt={UserSignIn} src={UserSignIn}/>
+            <img alt={FacilitySignIn} src={FacilitySignIn}/>
         </div>
         <Form.Group className="m-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
@@ -63,4 +63,4 @@ function Login() {
     </Container>
   );
 }
-export default Login;
+export default SignIn;
