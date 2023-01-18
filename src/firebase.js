@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, setDoc, doc, getDocs, collection, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -12,7 +12,7 @@ const firebaseConfig = {
     measurementId: "G-GWM7HCQNQY"
 };
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const db = getFirestore(app);
 
 export const registerWithEmailAndPassword = async (name, email, password, facilityName, gender, DOB, address, phoneNo ) => {
@@ -99,4 +99,13 @@ export const updateTrip = async ( tripId ) => {
 
 export const logout = () => {
   signOut(auth);
+};
+
+export const logInWithEmailAndPassword = async (email, password) => {
+  try {
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    console.log(res)
+  } catch (err) {
+    console.error(err.message);
+  }
 };
